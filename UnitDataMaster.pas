@@ -33,12 +33,14 @@ type
     TxtHobby: TEdit;
     TxtId: TEdit;
     GroupBox4: TGroupBox;
-    Button1: TButton;
-    Button2: TButton;
-    Button3: TButton;
-    Button4: TButton;
+    BtnSimpan: TButton;
+    BtnUbah: TButton;
+    BtnHapus: TButton;
+    BtnBatal: TButton;
     BtnKeluar: TButton;
     procedure BtnKeluarClick(Sender: TObject);
+    procedure OnDblClick(Sender: TObject);
+    procedure BtnBatalClick(Sender: TObject);
   private
     { Private declarations }
   public
@@ -52,9 +54,50 @@ implementation
 
 {$R *.dfm}
 
+procedure TForm1.BtnBatalClick(Sender: TObject);
+begin
+  ADOMahasiswa.SQL.Text := 'select * from master_member order by waktu asc';
+  ADOMahasiswa.Active:=True;
+  TxtNPM.Clear;
+  TxtNama.Clear;
+  TxtTTL.Clear;
+  TxtEmail.Clear;
+  TxtAngkatan.Clear;
+  TxtId.Clear;
+  TxtLine.Clear;
+  TxtHobby.Clear;
+  BtnUbah.Enabled:=False;
+  BtnHapus.Enabled:=False;
+end;
+
 procedure TForm1.BtnKeluarClick(Sender: TObject);
 begin
   Application.Terminate;
+end;
+
+procedure TForm1.OnDblClick(Sender: TObject);
+begin
+  TxtNPM.Clear;
+  TxtNama.Clear;
+  TxtTTL.Clear;
+  TxtEmail.Clear;
+  TxtAngkatan.Clear;
+  TxtId.Clear;
+  TxtLine.Clear;
+  TxtHobby.Clear;
+  // ambil data masukkan ke form
+  TxtNPM.Text := ADOMahasiswa.FieldByName('npm').AsString;
+  TxtNama.Text := ADOMahasiswa.FieldByName('nama').AsString;
+  TxtTTL.Text := ADOMahasiswa.FieldByName('ttl').AsString;
+  TxtEmail.Text := ADOMahasiswa.FieldByName('email').AsString;
+  TxtAngkatan.Text := ADOMahasiswa.FieldByName('angkatan').AsString;
+  TxtId.Text := ADOMahasiswa.FieldByName('id').AsString;
+  TxtLine.Text := ADOMahasiswa.FieldByName('idline').AsString;
+  TxtHobby.Text := ADOMahasiswa.FieldByName('hobi').AsString;
+  BtnUbah.Enabled:=True;
+  BtnHapus.Enabled:=True;
+  TxtNPM.ReadOnly:=True;
+  BtnSimpan.Enabled:=False;
 end;
 
 end.

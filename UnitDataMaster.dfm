@@ -47,6 +47,7 @@ object Form1: TForm1
       TitleFont.Height = -11
       TitleFont.Name = 'Tahoma'
       TitleFont.Style = []
+      OnDblClick = OnDblClick
       Columns = <
         item
           Expanded = False
@@ -279,7 +280,7 @@ object Form1: TForm1
     Height = 59
     Caption = 'Aksi'
     TabOrder = 2
-    object Button1: TButton
+    object BtnSimpan: TButton
       Left = 11
       Top = 15
       Width = 75
@@ -293,7 +294,7 @@ object Form1: TForm1
       ParentFont = False
       TabOrder = 0
     end
-    object Button2: TButton
+    object BtnUbah: TButton
       Left = 134
       Top = 15
       Width = 75
@@ -308,7 +309,7 @@ object Form1: TForm1
       ParentFont = False
       TabOrder = 1
     end
-    object Button3: TButton
+    object BtnHapus: TButton
       Left = 248
       Top = 15
       Width = 75
@@ -323,7 +324,7 @@ object Form1: TForm1
       ParentFont = False
       TabOrder = 2
     end
-    object Button4: TButton
+    object BtnBatal: TButton
       Left = 368
       Top = 15
       Width = 75
@@ -336,6 +337,7 @@ object Form1: TForm1
       Font.Style = [fsBold]
       ParentFont = False
       TabOrder = 3
+      OnClick = BtnBatalClick
     end
     object BtnKeluar: TButton
       Left = 481
