@@ -52,8 +52,8 @@ object Form1: TForm1
         item
           Expanded = False
           FieldName = 'id'
-          Width = 20
-          Visible = True
+          Width = -1
+          Visible = False
         end
         item
           Expanded = False
@@ -293,6 +293,7 @@ object Form1: TForm1
       Font.Style = [fsBold]
       ParentFont = False
       TabOrder = 0
+      OnClick = BtnSimpanClick
     end
     object BtnUbah: TButton
       Left = 134
@@ -308,6 +309,7 @@ object Form1: TForm1
       Font.Style = [fsBold]
       ParentFont = False
       TabOrder = 1
+      OnClick = BtnUbahClick
     end
     object BtnHapus: TButton
       Left = 248
@@ -323,6 +325,7 @@ object Form1: TForm1
       Font.Style = [fsBold]
       ParentFont = False
       TabOrder = 2
+      OnClick = BtnHapusClick
     end
     object BtnBatal: TButton
       Left = 368
@@ -359,7 +362,7 @@ object Form1: TForm1
     Connected = True
     ConnectionString = 
       'Provider=MSDASQL.1;Persist Security Info=False;Data Source=ilc-3' +
-      '2-64'
+      '2-64;Option=2;'
     LoginPrompt = False
     Left = 32
     Top = 8
@@ -370,7 +373,7 @@ object Form1: TForm1
     CursorType = ctStatic
     Parameters = <>
     SQL.Strings = (
-      'select * from master_member order by waktu asc')
+      'select * from master_member order by npm asc')
     Left = 544
     Top = 8
   end

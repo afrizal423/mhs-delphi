@@ -41,6 +41,9 @@ type
     procedure BtnKeluarClick(Sender: TObject);
     procedure OnDblClick(Sender: TObject);
     procedure BtnBatalClick(Sender: TObject);
+    procedure BtnUbahClick(Sender: TObject);
+    procedure BtnSimpanClick(Sender: TObject);
+    procedure BtnHapusClick(Sender: TObject);
   private
     { Private declarations }
   public
@@ -56,7 +59,7 @@ implementation
 
 procedure TForm1.BtnBatalClick(Sender: TObject);
 begin
-  ADOMahasiswa.SQL.Text := 'select * from master_member order by waktu asc';
+  ADOMahasiswa.SQL.Text := 'select * from master_member order by npm asc';
   ADOMahasiswa.Active:=True;
   TxtNPM.Clear;
   TxtNama.Clear;
@@ -70,9 +73,92 @@ begin
   BtnHapus.Enabled:=False;
 end;
 
+procedure TForm1.BtnHapusClick(Sender: TObject);
+begin
+  if TxtId.Text <> '' then
+   begin
+    if MessageDlg('Yakin menghapus data ini?',mtConfirmation,[mbYes,mbNo],0) = MrYes then
+    begin
+    //ShowMessage('proses hapus');
+    ADOMahasiswa.SQL.Clear;
+    ADOMahasiswa.SQL.Text := 'DELETE FROM master_member WHERE id = ' + TxtId.Text;
+    ADOMahasiswa.ExecSQL;
+    TxtNPM.Clear;
+    TxtNama.Clear;
+    TxtTTL.Clear;
+    TxtEmail.Clear;
+    TxtAngkatan.Clear;
+    TxtId.Clear;
+    TxtLine.Clear;
+  TxtHobby.Clear;
+    ADOMahasiswa.Active:=False;
+    ADOMahasiswa.SQL.Text := 'select * from master_member order by npm asc';
+    ADOMahasiswa.Active:=True;
+    BtnUbah.Enabled:=False;
+    BtnHapus.Enabled:=False;
+    end;
+
+   end
+  else
+   begin
+   ShowMessage('Silahkan pilih data dahulu!');
+   end;
+end;
+
 procedure TForm1.BtnKeluarClick(Sender: TObject);
 begin
   Application.Terminate;
+end;
+
+procedure TForm1.BtnSimpanClick(Sender: TObject);
+begin
+  ADOMahasiswa.Append;
+  ADOMahasiswa.FieldByName('npm').AsString := TxtNPM.Text;
+  ADOMahasiswa.FieldByName('nama').AsString := TxtNama.Text;
+  ADOMahasiswa.FieldByName('ttl').AsString := TxtTTL.Text;
+  ADOMahasiswa.FieldByName('email').AsString := TxtEmail.Text;
+  ADOMahasiswa.FieldByName('angkatan').AsString := TxtAngkatan.Text;
+//  ADOMahasiswa.FieldByName('id').AsString := TxtId.Text;
+  ADOMahasiswa.FieldByName('idline').AsString := TxtLine.Text;
+  ADOMahasiswa.FieldByName('hobi').AsString := TxtHobby.Text;
+  ADOMahasiswa.Post;
+  TxtNPM.Clear;
+  TxtNama.Clear;
+  TxtTTL.Clear;
+  TxtEmail.Clear;
+  TxtAngkatan.Clear;
+  TxtId.Clear;
+  TxtLine.Clear;
+  TxtHobby.Clear;
+  ShowMessage('Data Berhasil Ditambah!');
+end;
+
+procedure TForm1.BtnUbahClick(Sender: TObject);
+begin
+  ADOMahasiswa.Edit;
+  ADOMahasiswa.FieldByName('npm').AsString := TxtNPM.Text;
+  ADOMahasiswa.FieldByName('nama').AsString := TxtNama.Text;
+  ADOMahasiswa.FieldByName('ttl').AsString := TxtTTL.Text;
+  ADOMahasiswa.FieldByName('email').AsString := TxtEmail.Text;
+  ADOMahasiswa.FieldByName('angkatan').AsString := TxtAngkatan.Text;
+  ADOMahasiswa.FieldByName('id').AsString := TxtId.Text;
+  ADOMahasiswa.FieldByName('idline').AsString := TxtLine.Text;
+  ADOMahasiswa.FieldByName('hobi').AsString := TxtHobby.Text;
+  ADOMahasiswa.Post;
+  TxtNPM.Clear;
+  TxtNama.Clear;
+  TxtTTL.Clear;
+  TxtEmail.Clear;
+  TxtAngkatan.Clear;
+  TxtId.Clear;
+  TxtLine.Clear;
+  TxtHobby.Clear;
+// logical button
+  BtnUbah.Enabled:=False;
+  BtnHapus.Enabled:=False;
+  TxtNPM.ReadOnly:=False;
+  BtnSimpan.Enabled:=True;
+  ShowMessage('Data Berhasil Diubah!');
 end;
 
 procedure TForm1.OnDblClick(Sender: TObject);
