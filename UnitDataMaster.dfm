@@ -52,7 +52,6 @@ object Form1: TForm1
         item
           Expanded = False
           FieldName = 'id'
-          Width = -1
           Visible = False
         end
         item
