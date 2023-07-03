@@ -4,6 +4,9 @@ Projek ini sebagai pengenalan lingkungan IDE Delphi dan bahan belajar untuk test
 
 ## Demo
 
-https://github.com/afrizal423/mhs-delphi/assets/34409541/e624ff1b-c880-43fd-b0e5-ff857798ae5f
+
+https://github.com/afrizal423/mhs-delphi/assets/34409541/c8ca59f3-f59d-4239-9cd5-359bd541184b
+
+
 
 
